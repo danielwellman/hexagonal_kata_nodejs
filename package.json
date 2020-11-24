@@ -1,0 +1,14 @@
+{
+  "name": "hexagonal_kata_node",
+  "version": "1.0.0",
+  "description": "An implementation of the Birthday Greetings Kata",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
