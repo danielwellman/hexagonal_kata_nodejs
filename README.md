@@ -15,3 +15,7 @@ An implementation of [Matteo Vaccai's Birthday Greetings Kata](http://matteo.vac
 - How to read Files in Node?
   - What is a common abstraction for in-memory vs. files?
 
+
+## To Dos
+
+- Instead of using JS's `Date`, use another type that represents a calendar day and not a timestamp?
