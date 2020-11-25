@@ -1,5 +1,10 @@
 const Message = require('./message');
 
+function sameDayAndMonth(date, birthday) {
+    return date.getMonth() === birthday.getMonth() &&
+        date.getDate() === birthday.getDate();
+}
+
 class BirthdayService {
     constructor(repository, postOffice) {
         this.repository = repository;
@@ -8,7 +13,7 @@ class BirthdayService {
 
     sendGreetings(date) {
         let employees = [this.repository.employees[0]];
-        employees.forEach(employee => {
+        employees.filter(employee => sameDayAndMonth(date, employee.birthDate)).forEach(employee => {
             const message = new Message("Happy Birthday!",
                 employee.email,
                 `Happy Birthday, dear ${employee.firstName}!`);
