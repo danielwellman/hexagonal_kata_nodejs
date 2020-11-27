@@ -24,15 +24,22 @@ class InMemoryPostOffice {
 // REFACTOR introduce a method for dates to hide the JS Date class decision in the tests
 const today = new Date("2020-11-24T00:00:00")
 
-test('Sends an e-mail to one person on their birthday', () => {
-    const postOffice = new InMemoryPostOffice();
-    const repository = new InMemoryEmployeeRepository();
+let postOffice;
+let repository;
+let service;
 
+beforeEach(() => {
+    postOffice = new InMemoryPostOffice();
+    repository = new InMemoryEmployeeRepository();
+    service = new BirthdayService(repository, postOffice);
+});
+
+
+test('Sends an e-mail to one person on their birthday', () => {
     let jane = new Employee("Jane", "Simpson",
         new Date("1934-11-24T00:00:00"), "jane@example.com");
     repository.add(jane)
 
-    const service = new BirthdayService(repository, postOffice);
     service.sendGreetings(today);
 
     expect(postOffice.sentMessages).toEqual([
@@ -40,14 +47,10 @@ test('Sends an e-mail to one person on their birthday', () => {
 });
 
 test('Does not send an email if not a birthday', () => {
-    const postOffice = new InMemoryPostOffice();
-    const repository = new InMemoryEmployeeRepository();
-
     let notBirthday = new Employee("Not", "MyBirthday",
         oneDayAfter(today), "irrelevant@example.com");
     repository.add(notBirthday)
 
-    const service = new BirthdayService(repository, postOffice);
     service.sendGreetings(today);
 
     // REFACTOR: Create a more domain-specific assertion, possibly using a Set
@@ -55,9 +58,6 @@ test('Does not send an email if not a birthday', () => {
 });
 
 test('Sends e-mails for multiple people with the same birthday', () => {
-    const postOffice = new InMemoryPostOffice();
-    const repository = new InMemoryEmployeeRepository();
-
     repository.add(new Employee("Jane", "Simpson",
         new Date("1934-11-24T00:00:00"), "jane@example.com"));
     repository.add(new Employee("Not", "MyBirthday",
@@ -65,7 +65,6 @@ test('Sends e-mails for multiple people with the same birthday', () => {
     repository.add(new Employee("Marcus", "Aurelius",
         new Date("1999-11-24T00:00:00"), "marcus@example.com"));
 
-    const service = new BirthdayService(repository, postOffice);
     service.sendGreetings(today);
 
     let actual = postOffice.sentMessages.map(message => message.recipients);
