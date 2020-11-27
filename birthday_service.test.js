@@ -54,7 +54,24 @@ test('Does not send an email if not a birthday', () => {
     expect(postOffice.sentMessages).toHaveLength(0);
 });
 
-// TEST: Sends multiple messages on the same day
+test('Sends e-mails for multiple people with the same birthday', () => {
+    const postOffice = new InMemoryPostOffice();
+    const repository = new InMemoryEmployeeRepository();
+
+    repository.add(new Employee("Jane", "Simpson",
+        new Date("1934-11-24T00:00:00"), "jane@example.com"));
+    repository.add(new Employee("Not", "MyBirthday",
+        oneDayAfter(today), "irrelevant@example.com"));
+    repository.add(new Employee("Marcus", "Aurelius",
+        new Date("1999-11-24T00:00:00"), "marcus@example.com"));
+
+    const service = new BirthdayService(repository, postOffice);
+    service.sendGreetings(today);
+
+    let actual = postOffice.sentMessages.map(message => message.recipients);
+    expect(actual).toEqual(["jane@example.com", "marcus@example.com"])
+})
+
 // TEST: Ignores year in same date comparison
 
 // REFACTOR: Although this is a correct day to test, it's probably not realistic test data - the year should also be different

@@ -12,13 +12,13 @@ class BirthdayService {
     }
 
     sendGreetings(date) {
-        let employees = [this.repository.employees[0]];
-        employees.filter(employee => sameDayAndMonth(date, employee.birthDate)).forEach(employee => {
-            const message = new Message("Happy Birthday!",
-                employee.email,
-                `Happy Birthday, dear ${employee.firstName}!`);
-            this.postOffice.send(message)
-        });
+        this.repository.employees.filter(employee => sameDayAndMonth(date, employee.birthDate))
+            .forEach(employee => {
+                const message = new Message("Happy Birthday!",
+                    employee.email,
+                    `Happy Birthday, dear ${employee.firstName}!`);
+                this.postOffice.send(message)
+            });
     }
 
 }
