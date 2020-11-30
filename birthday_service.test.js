@@ -21,9 +21,6 @@ class InMemoryPostOffice {
     }
 }
 
-// REFACTOR introduce a method for dates to hide the JS Date class decision in the tests
-const today = new Date("2020-11-24T00:00:00")
-
 let postOffice;
 let repository;
 let service;
@@ -37,10 +34,10 @@ beforeEach(() => {
 
 test('Sends an e-mail to one person on their birthday', () => {
     let jane = new Employee("Jane", "Simpson",
-        new Date("1934-11-24T00:00:00"), "jane@example.com");
+        date("1934-11-24"), "jane@example.com");
     repository.add(jane)
 
-    service.sendGreetings(today);
+    service.sendGreetings(date("2020-11-24"));
 
     expect(postOffice.sentMessages).toEqual([
         new Message("Happy Birthday!", "jane@example.com", "Happy Birthday, dear Jane!")])
@@ -48,10 +45,10 @@ test('Sends an e-mail to one person on their birthday', () => {
 
 test('Does not send an email if not a birthday', () => {
     let notBirthday = new Employee("Not", "MyBirthday",
-        oneDayAfter(today), "irrelevant@example.com");
+        date("2019-02-12"), "irrelevant@example.com");
     repository.add(notBirthday)
 
-    service.sendGreetings(today);
+    service.sendGreetings(date("2020-11-24"));
 
     // REFACTOR: Create a more domain-specific assertion, possibly using a Set
     expect(postOffice.sentMessages).toHaveLength(0);
@@ -59,13 +56,13 @@ test('Does not send an email if not a birthday', () => {
 
 test('Sends e-mails for multiple people with the same birthday', () => {
     repository.add(new Employee("Jane", "Simpson",
-        new Date("1934-11-24T00:00:00"), "jane@example.com"));
+        date("1934-11-24"), "jane@example.com"));
     repository.add(new Employee("Not", "MyBirthday",
-        oneDayAfter(today), "irrelevant@example.com"));
+        date("2000-11-25"), "irrelevant@example.com"));
     repository.add(new Employee("Marcus", "Aurelius",
-        new Date("1999-11-24T00:00:00"), "marcus@example.com"));
+        date("1999-11-24"), "marcus@example.com"));
 
-    service.sendGreetings(today);
+    service.sendGreetings(date("2020-11-24"));
 
     let actual = postOffice.sentMessages.map(message => message.recipients);
     expect(actual).toEqual(["jane@example.com", "marcus@example.com"])
@@ -73,10 +70,6 @@ test('Sends e-mails for multiple people with the same birthday', () => {
 
 // TEST: Ignores year in same date comparison
 
-// REFACTOR: Although this is a correct day to test, it's probably not realistic test data - the year should also be different
-//           ... so we'd also need a better name
-function oneDayAfter(date) {
-    let after = new Date(date);
-    after.setDate(date.getDate + 1);
-    return after;
+function date(date) {
+    return new Date(date + "T00:00:00");
 }
