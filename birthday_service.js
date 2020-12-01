@@ -20,7 +20,6 @@ class BirthdayService {
                 this.postOffice.send(message)
             });
     }
-
 }
 
 module.exports = BirthdayService;
