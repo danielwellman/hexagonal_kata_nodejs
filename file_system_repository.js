@@ -1,4 +1,5 @@
 const fs = require("fs");
+const Employee = require("./employee");
 
 class FileSystemRepository {
     path;
@@ -9,7 +10,16 @@ class FileSystemRepository {
     }
 
     employees() {
-        return fs.readFileSync(this.path, 'utf8')
+        let fileContents = fs.readFileSync(this.path, 'utf8');
+        let fields = fileContents.split(",").map(s => s.trim());
+        return new Employee(fields[0], fields[1], this.parseDate(fields[2]), fields[3])
+    }
+
+    // Expected date format is yyyy/mm/dd
+    // This simple implementation doesn't check for date format errors
+    parseDate(date) {
+        let fields = date.split('/');
+        return new Date(fields[0], fields[1] - 1, fields[2])
     }
 }
 
