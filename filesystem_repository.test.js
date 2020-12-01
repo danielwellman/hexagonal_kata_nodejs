@@ -6,6 +6,14 @@ test('Reads a single Employee from the file system without a header row', () => 
     expect(actual).toEqual([new Employee("Angela", "Spencer", date("1980-05-25"), "angela@example.com")]);
 });
 
+test('Reads multiple Employees from the file system without a header row', () => {
+    const actual = new Repository("test_multiple_no_header.csv").employees();
+    expect(actual).toEqual([
+        new Employee("Zed", "Albatross", date("2001-01-29"), "zed@example.com"),
+        new Employee("Marco", "Litman", date("1999-12-31"), "marco@example.com")
+    ]);
+});
+
 // REFACTOR: Extract duplicate function in test cases
 function date(date) {
     return new Date(date + "T00:00:00");

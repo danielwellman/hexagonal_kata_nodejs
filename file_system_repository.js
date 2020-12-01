@@ -11,8 +11,15 @@ class FileSystemRepository {
 
     employees() {
         let fileContents = fs.readFileSync(this.path, 'utf8');
-        let fields = fileContents.split(",").map(s => s.trim());
-        return [new Employee(fields[0], fields[1], this.parseDate(fields[2]), fields[3])];
+        let lines = fileContents.split(/\r?\n/);
+        return lines.map(line => {
+            return this.parseEmployee(line);
+        });
+    }
+
+    parseEmployee(line) {
+        let fields = line.split(",").map(s => s.trim());
+        return new Employee(fields[0], fields[1], this.parseDate(fields[2]), fields[3]);
     }
 
     // Expected date format is yyyy/mm/dd
