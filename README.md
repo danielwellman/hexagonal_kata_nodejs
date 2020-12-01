@@ -1,6 +1,6 @@
 # Birthday Greetings Kata
 
-An implementation of [Matteo Vaccai's Birthday Greetings Kata](http://matteo.vaccari.name/blog/archives/154).
+An implementation of [Matteo Vaccari's Birthday Greetings Kata](http://matteo.vaccari.name/blog/archives/154).
 
 ## To Dos
 
