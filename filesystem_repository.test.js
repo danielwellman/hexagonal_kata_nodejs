@@ -14,6 +14,10 @@ test('Reads multiple Employees from the file system', () => {
     ]);
 });
 
+test('Throws an exception on construction if the filename does not exist', () => {
+    expect(() => new Repository("this_file_does_not_exist.txt")).toThrow(/no such file/i);
+});
+
 // REFACTOR: Extract duplicate function in test cases
 function date(date) {
     return new Date(date + "T00:00:00");

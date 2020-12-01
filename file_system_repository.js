@@ -5,8 +5,10 @@ class FileSystemRepository {
     path;
 
     constructor(path) {
+        if (!fs.existsSync(path)) {
+            throw 'No such file';
+        }
         this.path = path;
-        // ENHANCE Check the path is valid on construction?
     }
 
     employees() {
