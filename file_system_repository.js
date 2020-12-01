@@ -11,10 +11,14 @@ class FileSystemRepository {
 
     employees() {
         let fileContents = fs.readFileSync(this.path, 'utf8');
-        let lines = fileContents.split(/\r?\n/);
+        let lines = this.dropHeaderRow(fileContents.split(/\r?\n/));
         return lines.map(line => {
             return this.parseEmployee(line);
         });
+    }
+
+    dropHeaderRow(rows) {
+        return rows.slice(1);
     }
 
     parseEmployee(line) {
