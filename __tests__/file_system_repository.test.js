@@ -1,5 +1,5 @@
-const Repository = require('../file_system_repository');
-const Employee = require("../employee");
+const Repository = require('../lib/file_system_repository');
+const Employee = require("../lib/employee");
 
 test('Reads a single Employee from the file system', () => {
     const actual = new Repository("__tests__/test_single_employee.csv").all();

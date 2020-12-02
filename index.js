@@ -1,6 +1,6 @@
-const BirthdayService = require("./birthday_service");
-const FileSystemRepository = require("./file_system_repository");
-const SmtpPostOffice = require("./smtp_post_office");
+const BirthdayService = require("./lib/birthday_service");
+const FileSystemRepository = require("./lib/file_system_repository");
+const SmtpPostOffice = require("./lib/smtp_post_office");
 
 // Assemble the dependencies, using production adapters
 let repository = new FileSystemRepository('input.csv');
