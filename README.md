@@ -4,8 +4,6 @@ An implementation of [Matteo Vaccari's Birthday Greetings Kata](http://matteo.va
 
 ## To Dos
 
-- Implement an SMTP mail client adapter or decide (and document) why not...
-- Implement a 'main' in `index.js` to show production use/wiring of the application
 - Draw a picture of the ports and adapters and name them
 - Brief overview in this README
 - Fix any TODOs?
