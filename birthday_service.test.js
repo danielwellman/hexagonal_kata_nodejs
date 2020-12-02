@@ -70,7 +70,7 @@ test('Sends e-mails for multiple people with the same birthday', () => {
 
     service.sendGreetings(date("2020-11-24"));
 
-    let actual = postOffice.sentMessages.map(message => message.recipients);
+    let actual = postOffice.sentMessages.map(message => message.recipient);
     expect(actual).toEqual(["jane@example.com", "marcus@example.com"])
 })
 

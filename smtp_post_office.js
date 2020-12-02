@@ -7,7 +7,7 @@ class SmtpPostOffice {
     }
 
     send(message) {
-        console.debug("Sending message to " + message.recipients);
+        console.debug("Sending message to " + message.recipient);
 
         // Construct and send an e-mail over SMTP using a library such as `nodemailer`
         // In practice this would mean we would have asynchronous code which would impact
@@ -17,7 +17,7 @@ class SmtpPostOffice {
         //
         // let result = await transporter.sendMail({
         //     from: '"Birthday Kata Robot" <birthdaybot@example.com>',
-        //     to: message.recipients,
+        //     to: message.recipient,
         //     subject: message.subject,
         //     text: message.body
         // });
