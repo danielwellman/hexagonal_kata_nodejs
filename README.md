@@ -7,7 +7,6 @@ An implementation of [Matteo Vaccari's Birthday Greetings Kata](http://matteo.va
 - Draw a picture of the ports and adapters and name them
 - Brief overview in this README
 - Fix any TODOs?
-- Restructure into src/test folders
 - Push to GitHub
 
 Maybe:
