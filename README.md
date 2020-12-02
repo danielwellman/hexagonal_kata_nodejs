@@ -1,11 +1,28 @@
 # Birthday Greetings Kata
 
-An implementation of [Matteo Vaccari's Birthday Greetings Kata](http://matteo.vaccari.name/blog/archives/154).
+An implementation of [Matteo Vaccari's Birthday Greetings Kata](http://matteo.vaccari.name/blog/archives/154) in Node JS.  I created this project 
+as an opportunity to re-acquaint myself with NodeJS, and chose this kata as it was relatively small.
+
+This illustrates the Hexagonal Architecture (also known as "Ports and Adapters") pattern as described by 
+Alistair Cockburn.
+
+References:
+
+- [Description](https://alistair.cockburn.us/hexagonal-architecture/) at Alistair Cockburn's web site
+- [FAQ](https://web.archive.org/web/20170925184018/http://alistair.cockburn.us/Hexagonal+Architecture+FAQ) from the Wayback Archive
+
+In this example, there are three ports:
+
+- The `Employee Repository` is a source for obtaining information about `Employee`s. See the `FileSystemRepository` and the `InMemoryEmployeeRepository` in the tests.
+- The `Post Office` is a recipient port used for sending e-mails.  The `SmtpPostOffice` here is a skeleton implementation which would hold the code to communicate to an e-mail server over SMTP.  There is also an in-memory version in the tests called the `InMemoryPostOffice`. 
+- The `BirthdayService` has the driver port for interacting with the system both in tests and production.
+
+The `index.js` file is the main application entry point which creates all the production adapter implements, constructs the `BirthdayService`, 
+and asks it to send the e-mails.
 
 ## To Dos
 
 - Draw a picture of the ports and adapters and name them
-- Brief overview in this README
 - Fix any TODOs?
 - Push to GitHub
 
