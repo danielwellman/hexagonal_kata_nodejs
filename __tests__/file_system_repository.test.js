@@ -1,5 +1,6 @@
 const Repository = require('../lib/file_system_repository');
 const Employee = require("../lib/employee");
+const date = require("../lib/date_functions");
 
 test('Reads a single Employee from the file system', () => {
     const actual = new Repository("__tests__/test_single_employee.csv").all();
@@ -17,10 +18,5 @@ test('Reads multiple Employees from the file system', () => {
 test('Throws an exception on construction if the filename does not exist', () => {
     expect(() => new Repository("__tests__/this_file_does_not_exist.txt")).toThrow(/no such file/i);
 });
-
-// REFACTOR: Extract duplicate function in test cases
-function date(date) {
-    return new Date(date + "T00:00:00");
-}
 
 // REFACTOR: Introduce a temp file for the tests rather than a fixed resource

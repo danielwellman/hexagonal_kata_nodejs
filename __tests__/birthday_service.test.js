@@ -1,6 +1,7 @@
 const BirthdayService = require('../lib/birthday_service');
 const Employee = require('../lib/employee');
 const Message = require('../lib/message');
+const date = require("../lib/date_functions");
 
 class InMemoryEmployeeRepository {
     #employees
@@ -56,7 +57,6 @@ test('Does not send an email if not a birthday', () => {
 
     service.sendGreetings(date("2020-11-24"));
 
-    // REFACTOR: Create a more domain-specific assertion, possibly using a Set
     expect(postOffice.sentMessages).toHaveLength(0);
 });
 
@@ -73,9 +73,3 @@ test('Sends e-mails for multiple people with the same birthday', () => {
     let actual = postOffice.sentMessages.map(message => message.recipient);
     expect(actual).toEqual(["jane@example.com", "marcus@example.com"])
 })
-
-// TEST: Ignores year in same date comparison
-
-function date(date) {
-    return new Date(date + "T00:00:00");
-}
