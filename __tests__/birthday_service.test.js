@@ -1,6 +1,6 @@
-const BirthdayService = require('./birthday_service');
-const Employee = require('./employee');
-const Message = require('./message');
+const BirthdayService = require('../birthday_service');
+const Employee = require('../employee');
+const Message = require('../message');
 
 class InMemoryEmployeeRepository {
     #employees
