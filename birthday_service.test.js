@@ -3,12 +3,18 @@ const Employee = require('./employee');
 const Message = require('./message');
 
 class InMemoryEmployeeRepository {
+    #employees
+
     constructor() {
-        this.employees = [];
+        this.#employees = [];
+    }
+
+    all() {
+        return this.#employees;
     }
 
     add(employee) {
-        this.employees.push(employee);
+        this.#employees.push(employee);
     }
 }
 

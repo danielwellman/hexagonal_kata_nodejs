@@ -6,7 +6,7 @@ class FileSystemRepository {
         this.csv = new Csv(path);
     }
 
-    employees() {
+    all() {
         return this.csv.rows().map(row => {
             return this.parseEmployee(row);
         })

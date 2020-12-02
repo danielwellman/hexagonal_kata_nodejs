@@ -2,12 +2,12 @@ const Repository = require('./file_system_repository');
 const Employee = require("./employee");
 
 test('Reads a single Employee from the file system', () => {
-    const actual = new Repository("test_single_employee.csv").employees();
+    const actual = new Repository("test_single_employee.csv").all();
     expect(actual).toEqual([new Employee("Angela", "Spencer", date("1980-05-25"), "angela@example.com")]);
 });
 
 test('Reads multiple Employees from the file system', () => {
-    const actual = new Repository("test_multiple_employees.csv").employees();
+    const actual = new Repository("test_multiple_employees.csv").all();
     expect(actual).toEqual([
         new Employee("Zed", "Albatross", date("2001-01-29"), "zed@example.com"),
         new Employee("Marco", "Litman", date("1999-12-31"), "marco@example.com")

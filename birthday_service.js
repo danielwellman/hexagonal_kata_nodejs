@@ -12,7 +12,7 @@ class BirthdayService {
     }
 
     sendGreetings(date) {
-        this.repository.employees.filter(employee => sameDayAndMonth(date, employee.birthDate))
+        this.repository.all().filter(employee => sameDayAndMonth(date, employee.birthDate))
             .forEach(employee => {
                 const message = new Message("Happy Birthday!",
                     employee.email,
