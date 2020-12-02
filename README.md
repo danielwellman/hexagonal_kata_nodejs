@@ -24,7 +24,6 @@ and asks it to send the e-mails.
 
 - Draw a picture of the ports and adapters and name them
 - Fix any TODOs?
-- Push to GitHub
 
 Maybe:
 
