@@ -23,9 +23,8 @@ and asks it to send the e-mails.
 ## To Dos
 
 - Draw a picture of the ports and adapters and name them
-- Fix any TODOs?
 
-Maybe:
+### Maybes
 
 - Contract tests for different adapters? (file system vs in memory repository, etc.)
 - Fully implement the SmtpPostOffice using something like `nodemailer`  
