@@ -1,5 +1,7 @@
 # Birthday Greetings Kata
 
+_December 3, 2020: Note: This is a work in progress to convert to TypeScript_.
+
 An implementation of [Matteo Vaccari's Birthday Greetings Kata](http://matteo.vaccari.name/blog/archives/154) in Node JS.  I created this project 
 as an opportunity to re-acquaint myself with NodeJS, and chose this kata as it was relatively small.
 
