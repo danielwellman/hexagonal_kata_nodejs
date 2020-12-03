@@ -20,6 +20,10 @@ In this example, there are three ports:
 The `index.js` file is the main application entry point which creates all the production adapter implements, constructs the `BirthdayService`, 
 and asks it to send the e-mails.
 
+### Design Constraints
+
+For this kata, I set one constraint for myself: Minimal dependency on external packages. So far this uses `jest` for testing, but no CSV or other libraries.
+
 ## To Dos
 
 - Draw a picture of the ports and adapters and name them
