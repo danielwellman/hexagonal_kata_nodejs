@@ -1,7 +1,10 @@
-const fs = require("fs");
-const Employee = require("./employee");
+import {Employees} from "./employees";
+import {Employee} from "./employee";
 
-class FileSystemEmployees {
+const fs = require("fs");
+
+export class FileSystemEmployees implements Employees {
+    private csv: Csv;
     constructor(path) {
         this.csv = new Csv(path);
     }
@@ -12,7 +15,7 @@ class FileSystemEmployees {
         })
     }
 
-    parseEmployee(fields) {
+    parseEmployee(fields: Array<string>) {
         return new Employee(fields[0], fields[1], this.parseDate(fields[2]), fields[3]);
     }
 
@@ -28,6 +31,8 @@ class FileSystemEmployees {
 // This is not suitable for large files as it loads the entire file contents in memory; a CSV library
 // would be more appropriate for production use.
 class Csv {
+    private readonly path: any; // should be PathLike
+
     constructor(path) {
         if (!fs.existsSync(path)) {
             throw 'No such file';
@@ -36,7 +41,7 @@ class Csv {
     }
 
     // Return an array of arrays; the first array contains lines, the internal array contains fields
-    rows() {
+    rows(): Array<Array<string>> {
         let fileContents = fs.readFileSync(this.path, 'utf8');
         let lines = this.dropHeaderRow(fileContents.split(/\r?\n/));
         return lines.map(line => {
@@ -48,5 +53,3 @@ class Csv {
         return rows.slice(1);
     }
 }
-
-module.exports = FileSystemEmployees;

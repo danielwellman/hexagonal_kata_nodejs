@@ -1,12 +1,17 @@
-const Message = require('./message');
+import {Message} from "./message";
+import {Employees} from "./employees";
+import {PostOffice} from "./post_office";
 
-function sameDayAndMonth(date, birthday) {
+function sameDayAndMonth(date: Date, birthday: Date) {
     return date.getMonth() === birthday.getMonth() &&
         date.getDate() === birthday.getDate();
 }
 
-class BirthdayService {
-    constructor(employees, postOffice) {
+export class BirthdayService {
+    private employees: Employees;
+    private postOffice: PostOffice;
+
+    constructor(employees: Employees, postOffice: PostOffice) {
         this.employees = employees;
         this.postOffice = postOffice;
     }
@@ -21,5 +26,3 @@ class BirthdayService {
             });
     }
 }
-
-module.exports = BirthdayService;

@@ -1,10 +1,12 @@
-const BirthdayService = require('../lib/birthday_service');
-const Employee = require('../lib/employee');
-const Message = require('../lib/message');
-const date = require("../lib/date_functions");
+import {Employees} from "../lib/employees";
+import {PostOffice} from "../lib/post_office";
+import {Message} from "../lib/message";
+import {BirthdayService} from "../lib/birthday_service";
+import {Employee} from "../lib/employee";
+import {date} from "../lib/date_functions";
 
-class InMemoryEmployees {
-    #employees
+class InMemoryEmployees implements Employees {
+    readonly #employees
 
     constructor() {
         this.#employees = [];
@@ -19,7 +21,7 @@ class InMemoryEmployees {
     }
 }
 
-class InMemoryPostOffice {
+class InMemoryPostOffice implements PostOffice {
     sentMessages = []
 
     // post office contract
