@@ -3,7 +3,7 @@ const Employee = require('../lib/employee');
 const Message = require('../lib/message');
 const date = require("../lib/date_functions");
 
-class InMemoryEmployeeRepository {
+class InMemoryEmployees {
     #employees
 
     constructor() {
@@ -29,20 +29,20 @@ class InMemoryPostOffice {
 }
 
 let postOffice;
-let repository;
+let employees;
 let service;
 
 beforeEach(() => {
     postOffice = new InMemoryPostOffice();
-    repository = new InMemoryEmployeeRepository();
-    service = new BirthdayService(repository, postOffice);
+    employees = new InMemoryEmployees();
+    service = new BirthdayService(employees, postOffice);
 });
 
 
 test('Sends an e-mail to one person on their birthday', () => {
     let jane = new Employee("Jane", "Simpson",
         date("1934-11-24"), "jane@example.com");
-    repository.add(jane)
+    employees.add(jane)
 
     service.sendGreetings(date("2020-11-24"));
 
@@ -53,7 +53,7 @@ test('Sends an e-mail to one person on their birthday', () => {
 test('Does not send an email if not a birthday', () => {
     let notBirthday = new Employee("Not", "MyBirthday",
         date("2019-02-12"), "irrelevant@example.com");
-    repository.add(notBirthday)
+    employees.add(notBirthday)
 
     service.sendGreetings(date("2020-11-24"));
 
@@ -61,11 +61,11 @@ test('Does not send an email if not a birthday', () => {
 });
 
 test('Sends e-mails for multiple people with the same birthday', () => {
-    repository.add(new Employee("Jane", "Simpson",
+    employees.add(new Employee("Jane", "Simpson",
         date("1934-11-24"), "jane@example.com"));
-    repository.add(new Employee("Not", "MyBirthday",
+    employees.add(new Employee("Not", "MyBirthday",
         date("2000-11-25"), "irrelevant@example.com"));
-    repository.add(new Employee("Marcus", "Aurelius",
+    employees.add(new Employee("Marcus", "Aurelius",
         date("1999-11-24"), "marcus@example.com"));
 
     service.sendGreetings(date("2020-11-24"));

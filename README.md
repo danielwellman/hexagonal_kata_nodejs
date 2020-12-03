@@ -13,7 +13,7 @@ References:
 
 In this example, there are three ports:
 
-- The `Employee Repository` is a source for obtaining information about `Employee`s. See the `FileSystemRepository` and the `InMemoryEmployeeRepository` in the tests.
+- The `Employees` repository is a source for obtaining information about `Employee`s. See the `FileSystemEmployees` and the `InMemoryEmployees` implementations in the tests.
 - The `Post Office` is a recipient port used for sending e-mails.  The `SmtpPostOffice` here is a skeleton implementation which would hold the code to communicate to an e-mail server over SMTP.  There is also an in-memory version in the tests called the `InMemoryPostOffice`. 
 - The `BirthdayService` has the driver port for interacting with the system both in tests and production.
 
