@@ -32,7 +32,11 @@ and asks it to send the e-mails.
 
 ### Design Constraints
 
-For this kata, I set one constraint for myself: Minimal dependency on external packages. So far this uses `jest` for testing, but no CSV or other libraries.
+For this kata, I set some constraints for myself: 
+
+- Minimal dependency on external packages. So far this uses `jest` for testing, but no CSV or other libraries.
+- Use Synchronous implementation where possible to focus on the structure of the solution; a future iteration may add support for asynchronous implementation, which is
+ common in JavaScript projects.
 
 ### Maybe TODOs
 
