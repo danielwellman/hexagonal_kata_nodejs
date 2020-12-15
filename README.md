@@ -36,7 +36,7 @@ For this kata, I set some constraints for myself:
 
 - Minimal dependency on external packages. So far this uses `jest` for testing, but no CSV or other libraries.
 - Use Synchronous implementation where possible to focus on the structure of the solution; a future iteration may add support for asynchronous implementation, which is
- common in JavaScript projects.
+ common in JavaScript projects.  For one possible asynchronous implementation, see the `asynch_js` branch in this repository.
 
 ### Maybe TODOs
 
